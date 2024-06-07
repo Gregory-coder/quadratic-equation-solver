@@ -1,4 +1,4 @@
-package main
+package quadratic_equation_solver
 
 import (
 	"testing"
@@ -19,6 +19,28 @@ func TestSolve(t *testing.T) {
 		got, err := tt.equation.Solve()
 		if got != tt.expectedValue {
 			t.Errorf("got %v, expected %v", got, tt.expectedValue)
+		}
+		if err != tt.expectedError {
+			t.Fatal("got unexpected error: ", err)
+		}
+	}
+}
+
+func TestParse(t *testing.T) {
+	parseTests := []struct{
+		input string
+		expectedEquation QuadraticEquation
+		expectedError error
+	}{
+		{"x^2 + 2x + 0 = 0", QuadraticEquation{1, 2, 0}, nil},
+		{"-5x + 2x + 7 = 0", QuadraticEquation{0, -3, 7}, nil},
+		{"6x^2 = 10x", QuadraticEquation{6, -10, 0}, nil},
+	}
+
+	for _, tt := range parseTests {
+		got, err := ParseEquation(tt.input)
+		if got != &tt.expectedEquation {
+			t.Errorf("got %v, expected %v", got, &tt.expectedEquation)
 		}
 		if err != tt.expectedError {
 			t.Fatal("got unexpected error: ", err)

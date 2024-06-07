@@ -1,15 +1,32 @@
-package main
+package quadratic_equation_solver
 
 import (
 	"errors"
+	"fmt"
 	"math"
+	"strings"
 )
 
-var ErrNoRealRoots = errors.New("no real roots found") 
-var ErrInvalidFactors = errors.New("invalid factors") 
+var (
+	ErrNoRealRoots    = errors.New("no real roots found") 
+	ErrInvalidFactors = errors.New("invalid factors")
+)
 
 type QuadraticEquation struct {
 	a, b, c float64
+}
+
+func ParseEquation(input string) (equation *QuadraticEquation, err error) {
+	input = strings.ToLower(input)
+	input = strings.TrimSpace(input)
+
+	// var component string
+	// var startIndex, endIndex int
+	for _, charachter := range input {
+		fmt.Printf("%c", charachter)
+	}
+
+	return
 }
 
 func (qe QuadraticEquation) Solve() ([2]float64, error) {
