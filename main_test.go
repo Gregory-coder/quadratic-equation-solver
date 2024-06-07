@@ -32,7 +32,7 @@ func TestParse(t *testing.T) {
 		expectedEquation QuadraticEquation
 		expectedError error
 	}{
-		{"x^2 + 2x + 0 = 0", QuadraticEquation{1, 2, 0}, nil},
+		{"x^2 = 4", QuadraticEquation{1, 0, -4}, nil},
 		{"-5x + 2x + 7 = 0", QuadraticEquation{0, -3, 7}, nil},
 		{"6x^2 = 10x", QuadraticEquation{6, -10, 0}, nil},
 	}

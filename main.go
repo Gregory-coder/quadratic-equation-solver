@@ -2,31 +2,31 @@ package quadratic_equation_solver
 
 import (
 	"errors"
-	"fmt"
 	"math"
+	"strconv"
 	"strings"
+	"fmt"
 )
 
 var (
 	ErrNoRealRoots    = errors.New("no real roots found") 
 	ErrInvalidFactors = errors.New("invalid factors")
+	ErrInvalidSyntax  = errors.New("invalid syntax")
 )
 
 type QuadraticEquation struct {
 	a, b, c float64
 }
 
-func ParseEquation(input string) (equation *QuadraticEquation, err error) {
+func ParseEquation(input string) (*QuadraticEquation, error) {
+	equation := QuadraticEquation{1, 1, 1}
+	var err error 
+
 	input = strings.ToLower(input)
 	input = strings.TrimSpace(input)
-
-	// var component string
-	// var startIndex, endIndex int
-	for _, charachter := range input {
-		fmt.Printf("%c", charachter)
-	}
-
-	return
+	
+	
+	return &equation, err
 }
 
 func (qe QuadraticEquation) Solve() ([2]float64, error) {
