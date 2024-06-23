@@ -3,9 +3,7 @@ package quadratic_equation_solver
 import (
 	"errors"
 	"math"
-	"strconv"
 	"strings"
-	"fmt"
 )
 
 var (
