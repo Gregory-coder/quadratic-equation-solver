@@ -1,12 +1,13 @@
-package quadratic_equation_solver
+package equation
 
 import (
+	"reflect"
 	"testing"
 )
 
 func TestSolve(t *testing.T) {
-	rootTests := []struct{
-		equation QuadraticEquation
+	rootTests := []struct {
+		equation      QuadraticEquation
 		expectedValue [2]float64
 		expectedError error
 	}{
@@ -27,10 +28,10 @@ func TestSolve(t *testing.T) {
 }
 
 func TestParse(t *testing.T) {
-	parseTests := []struct{
-		input string
+	parseTests := []struct {
+		input            string
 		expectedEquation QuadraticEquation
-		expectedError error
+		expectedError    error
 	}{
 		{"x^2 = 4", QuadraticEquation{1, 0, -4}, nil},
 		{"-5x + 2x + 7 = 0", QuadraticEquation{0, -3, 7}, nil},
@@ -38,8 +39,8 @@ func TestParse(t *testing.T) {
 	}
 
 	for _, tt := range parseTests {
-		got, err := ParseEquation(tt.input)
-		if got != &tt.expectedEquation {
+		got, err := Parse(tt.input)
+		if reflect.DeepEqual(got, tt.expectedEquation) {
 			t.Errorf("got %v, expected %v", got, &tt.expectedEquation)
 		}
 		if err != tt.expectedError {
