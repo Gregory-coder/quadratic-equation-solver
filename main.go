@@ -27,6 +27,7 @@ func Parse(input string) (*QuadraticEquation, error) {
 	parseRatios(input, &equation)
 	return &equation, err
 }
+
 func parseRatios(input string, equation *QuadraticEquation) {
 	isRightPart := false
 	startIndex := 0
@@ -43,7 +44,7 @@ func parseRatios(input string, equation *QuadraticEquation) {
 			if err != nil {
 				break
 			}
-			
+
 			if isRightPart {
 				k = -k
 			}
