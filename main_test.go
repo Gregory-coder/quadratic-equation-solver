@@ -12,7 +12,7 @@ func TestNew(t *testing.T) {
 	if !reflect.DeepEqual(got, &want) {
 		t.Errorf("got %v, expected %v", got, want)
 	}
-	
+
 }
 func TestSolve(t *testing.T) {
 	rootTests := []struct {
@@ -71,7 +71,7 @@ func BenchmarkParse(b *testing.B) {
 		"3.5x^2 — 2.0001x + 90 = 0 + 2x - 4",
 	}
 	b.ResetTimer()
-	for i:= 0; i < 100; i++ {
+	for i := 0; i < 100; i++ {
 		for _, tt := range testEquations {
 			Parse(tt)
 		}

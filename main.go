@@ -16,7 +16,7 @@ type QuadraticEquation struct {
 	a, b, c float64
 }
 
-func New(a, b, c float64) (*QuadraticEquation) {
+func New(a, b, c float64) *QuadraticEquation {
 	return &QuadraticEquation{a, b, c}
 }
 
@@ -28,7 +28,7 @@ func Parse(input string) (equation *QuadraticEquation, err error) {
 
 	err = parseRatios(input, equation)
 
-	return 
+	return
 }
 
 func (qe QuadraticEquation) Solve() ([2]float64, error) {

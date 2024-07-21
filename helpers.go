@@ -10,7 +10,7 @@ func parseRatios(input string, eq *QuadraticEquation) (err error) {
 	startIndex := 0
 	// the string is split into fragments, which are parsed independently
 	for i := 1; i < len(input); i++ {
-		if input[i] == '+' || input[i] == '-' || input[i] == '=' || i == len(input) - 1 {
+		if input[i] == '+' || input[i] == '-' || input[i] == '=' || i == len(input)-1 {
 			var part string
 			if i < len(input)-1 {
 				part = input[startIndex:i]
