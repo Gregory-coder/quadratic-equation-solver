@@ -67,20 +67,26 @@ fmt.Println(secondEquation) // &{1 0 0}
 ```
 ### Methods and structs
 #### QuadraticEquation
+Struct with coefficients of equation (a, b, c), stored as `float64`.
 ```go
 type QuadraticEquation struct {
 	a, b, c float64
 }
 ```
 #### New()
+Takes coefficients of equation and returns `QuadraticEquation` struct
 ```go
 func New(a, b, c float64) *QuadraticEquation
 ```
 #### Parse()
+Takes a `string`, returns `QuadraticEquation` struct and an `error`.
+If no errors occurred, it returns `nil`.
 ```go
 func Parse(input string) (equation *QuadraticEquation, err error)
 ```
 #### Solve()
+Takes no arguments, returns an array of 2 `float64` and an `error`.
+If no errors occurred, it returns `nil`.
 ```go
 func (qe QuadraticEquation) Solve() ([2]float64, error)
 ```
