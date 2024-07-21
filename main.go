@@ -3,7 +3,6 @@ package equation
 import (
 	"errors"
 	"math"
-	"strconv"
 	"strings"
 )
 
@@ -17,72 +16,19 @@ type QuadraticEquation struct {
 	a, b, c float64
 }
 
-func Parse(input string) (*QuadraticEquation, error) {
-	equation := QuadraticEquation{0, 0, 0}
-	var err error
+func New(a, b, c float64) (*QuadraticEquation) {
+	return &QuadraticEquation{a, b, c}
+}
+
+func Parse(input string) (equation *QuadraticEquation, err error) {
+	equation = &QuadraticEquation{0, 0, 0}
 
 	input = strings.ToLower(input)
 	input = strings.ReplaceAll(input, " ", "")
 
-	parseRatios(input, &equation)
-	return &equation, err
-}
+	err = parseRatios(input, equation)
 
-func parseRatios(input string, equation *QuadraticEquation) {
-	isRightPart := false
-	startIndex := 0
-	for i := 1; i < len(input); i++ {
-		if input[i] == '+' || input[i] == '-' || input[i] == '=' || i == len(input)-1 {
-			var part string
-			if i < len(input)-1 {
-				part = input[startIndex:i]
-			} else {
-				part = input[startIndex : i+1]
-			}
-			k, category, err := parsePart(part)
-
-			if err != nil {
-				break
-			}
-
-			if isRightPart {
-				k = -k
-			}
-			switch category {
-			case 2:
-				equation.a += k
-			case 1:
-				equation.b += k
-			case 0:
-				equation.c += k
-			}
-			startIndex = i
-			if input[i] == '=' {
-				startIndex++
-				isRightPart = true
-			}
-		}
-	}
-}
-func parsePart(str string) (k float64, category int, err error) {
-	xPosition := strings.Index(str, "x")
-	if xPosition == -1 {
-		category = 0
-	} else {
-		degreePosition := strings.Index(str, "^")
-		if degreePosition == -1 {
-			category = 1
-		} else {
-			category = 2
-		}
-		str = str[:xPosition]
-	}
-	if len(str) == 0 {
-		k = 1
-	} else {
-		k, err = strconv.ParseFloat(strings.TrimSpace(str), 64)
-	}
-	return
+	return 
 }
 
 func (qe QuadraticEquation) Solve() ([2]float64, error) {
