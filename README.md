@@ -1,6 +1,6 @@
 # A fast and convinient Go library for solving quadratic equations
 ## ⚠️ Attention
-**Equation** v1.x.x cannot solve equations in complex numbers, only in floating point numbers.
+**Equation** v1.x.x does not support complex numbers, only floating point numbers.
 ## ⚙️ Installation
 
 First, initialize your project with Go modules by executing the following command in your terminal:
