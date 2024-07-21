@@ -42,7 +42,7 @@ func main() {
 ```
 
 ### Parse equations
-**Equation** allows you to parse an equation from the string via **equation.Parse(string)** method 
+**Equation** allows you to parse an equation from the string via **equation.Parse(input string)** method 
 
 The unknown value must be determined as *x*, *x* in the second degree is defined as *x^2*.
 In other words, **Equation** can solve equations looking like:
@@ -51,4 +51,36 @@ where *a* and *x* are floating point numbers.
 
 ```go
 e, err := equation.Parse("x^2=4")
+```
+### Initializing
+Quadratic equation can also be initialized via **equation.New(a, b, c int)** method. 
+It takes 3 arguments, which are coeffecients of the equation. 
+
+```go
+// For example: x^2 + 2x + 3 = 0
+firstEquation := equation.New(1, 2, 3)
+// For example: x^2 = 0
+secondEquation := equation.New(1, 0, 0)
+
+fmt.Println(firstEquation) // &{1, 2, 3}
+fmt.Println(secondEquation) // &{1 0 0}
+```
+### Methods and structs
+#### QuadraticEquation
+```go
+type QuadraticEquation struct {
+	a, b, c float64
+}
+```
+#### New()
+```go
+func New(a, b, c float64) *QuadraticEquation
+```
+#### Parse()
+```go
+func Parse(input string) (equation *QuadraticEquation, err error)
+```
+#### Solve()
+```go
+func (qe QuadraticEquation) Solve() ([2]float64, error)
 ```
